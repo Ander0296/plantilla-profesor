@@ -1,0 +1,15 @@
+# Material de estudio (copyright — NUNCA subir, el repo puede ser público)
+material/
+
+# Archivos locales de herramientas
+.codegraph/
+.claude/settings.local.json
+.atl/
+
+# Compilados/temporales típicos (Claude agrega los del tema en el MENSAJE 0)
+*.class
+__pycache__/
+
+# Basura del sistema
+.DS_Store
+Thumbs.db
