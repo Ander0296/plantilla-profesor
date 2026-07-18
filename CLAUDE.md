@@ -116,6 +116,32 @@ que estudia: repaso doble, dedos y memoria a la vez.
 - Las frases no se editan después (son material de repaso). Si un
   concepto cambió o se corrigió, se agrega una frase nueva.
 
+### Tarjetas Anki — REGLA PERMANENTE
+
+El usuario repasa con Anki (app externa). Las tarjetas las crea
+Claude aplicando el Pareto 80/20: SOLO los conceptos que más valor
+aportan al objetivo, no todo el material — pocas tarjetas buenas
+fijan más que un mazo exhaustivo.
+- UN solo archivo por proyecto: ANKI.txt (viaja por git; lo mantiene
+  Claude). El usuario lo importa en Anki cuando quiere: re-importar
+  ACTUALIZA las tarjetas existentes (Anki matchea por la pregunta,
+  el primer campo) y agrega las nuevas, sin duplicar.
+- Formato: cabeceras #separator:tab, #html:false,
+  #deck:<nombre-del-proyecto> y #tags:<nombre-en-minusculas>;
+  después una tarjeta por línea: pregunta TAB respuesta.
+- Con tabulador como separador, las comillas dobles y los punto y
+  coma del código van LITERALES, sin escapar (jamás ""dobladas"").
+  Regla dura: ni pregunta ni respuesta contienen tabs ni saltos de
+  línea, y ninguna empieza con comillas.
+- Cada tarjeta es AUTOCONTENIDA: prohibido "según el libro", "en la
+  página X", "como vimos en la sesión Y". Cualquier persona debe
+  poder estudiarla sin conocer el material ni el proyecto.
+- Al cerrar cada tanda, Claude agrega las tarjetas 80/20 de la
+  sesión (2-5 por tanda: las mejores, no todas las posibles).
+- La PREGUNTA nunca se reformula después (es la clave de matcheo en
+  Anki). Si una respuesta quedó mal o vieja, se corrige la respuesta
+  dejando la pregunta idéntica.
+
 ### Plan por fases — RUTA.md (REGLA PERMANENTE)
 
 - El proyecto NO termina con el material principal: RUTA.md define
@@ -147,9 +173,11 @@ que estudia: repaso doble, dedos y memoria a la vez.
    vocabulario si el material está en otro idioma).
 7. Agregar 1-2 frases de la sesión a MECANOGRAFIA.md y volcar todas
    aplanadas al archivo de ttyper (ver regla de mecanografía).
-8. Crear prácticas del profe cuando el tema lo amerite (misma regla).
-9. Guardar en Engram conceptos clave, decisiones y punto exacto del
-   material donde quedamos.
+8. Agregar las tarjetas 80/20 de la sesión a ANKI.txt (ver regla de
+   tarjetas Anki: autocontenidas, tab, 2-5 por tanda).
+9. Crear prácticas del profe cuando el tema lo amerite (misma regla).
+10. Guardar en Engram conceptos clave, decisiones y punto exacto del
+    material donde quedamos.
 
 ### Reglas de trabajo
 
