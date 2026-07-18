@@ -23,6 +23,9 @@ Cada paso dice dónde va. Los MENSAJES están al final del archivo.
   Claude crea el ARCHIVO DE ARRANQUE (enunciado + prompt de entrega
   adentro, sin nada de la solución); yo resuelvo ahí mismo
 - ejercicios/repasos/ → mis repasos (desde cero, sin mirar el original)
+- MECANOGRAFIA.md → frases de tipeo por sesión (las anota Claude al
+  cerrar cada tanda y las vuelca al archivo de ttyper; yo practico
+  con CTRL+SUPER+ALT+T sin mirar el teclado)
 - GUIA.md → la guía por sesiones (la escribe Claude)
 - EJERCICIOS.md → prácticas y repasos (los escribe Claude)
 - RUTA.md → el plan por fases hasta mi objetivo (lo mantiene Claude)
@@ -145,7 +148,9 @@ Tanda nueva: leé todas las imágenes que hay en la raíz de material/
 (sin entrar a material/visto/), en orden de nombre, y arrancá el
 flujo completo de CLAUDE.md. Cuando termines de explicarme esta
 tanda, antes de cualquier otra cosa, mové esas mismas imágenes a
-material/visto/ para que la raíz quede vacía.
+material/visto/ para que la raíz quede vacía, agregá las frases de
+esta tanda a MECANOGRAFIA.md y volcá todas las frases aplanadas al
+archivo de ttyper (regla de mecanografía de CLAUDE.md).
 ```
 
 --- MENSAJE 3 — entregar una práctica (la versión YA RELLENA está al final del archivo de arranque; usá esa) ---
@@ -175,8 +180,9 @@ agendá el siguiente si corresponde.
 
 ```
 Cerramos acá:
-1. Verificá que GUIA.md y EJERCICIOS.md quedaron actualizados con
-   todo lo de hoy (incluida la sección REPASOS si completé algo).
+1. Verificá que GUIA.md, EJERCICIOS.md y MECANOGRAFIA.md quedaron
+   actualizados con todo lo de hoy (incluida la sección REPASOS si
+   completé algo, y que el archivo de ttyper tenga todas las frases).
 2. Verificá que TODA práctica o repaso pendiente tenga su archivo de
    arranque creado (si falta alguno, crealo ahora: solo enunciado y
    prompt, nada de solución).
