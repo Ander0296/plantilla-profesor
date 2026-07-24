@@ -9,7 +9,9 @@ Prácticas: ver EJERCICIOS.md.
 
 - Último punto estudiado: ninguno todavía — arrancamos en la sesión #01
 - Última sesión: ninguna todavía
-- Prácticas pendientes: ninguna todavía (ver EJERCICIOS.md)
+- Prácticas pendientes: ninguna todavía — esta línea lista SOLO lo
+  pendiente (nombres, sin historial); estados completos, fechas y
+  repasos viven en EJERCICIOS.md (fuente de verdad)
 - Entorno verificado: (lo completa Claude en el MENSAJE 0)
 
 ## VOCABULARIO (solo si el material está en otro idioma; una fila por término nuevo)
