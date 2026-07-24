@@ -87,7 +87,8 @@ Registro DOBLE + archivo de arranque creado por Claude:
 - Al corregir, Claude compara versión nueva vs. original: qué mejoró,
   qué se repitió mal. Bien → siguiente repaso del ciclo; mal →
   acortar el intervalo (~3 días). Mal DOS veces seguidas → RE-ESTUDIO
-  (releer la sesión de la guía + práctica nueva del tema).
+  (releer la sesión de la guía — en GUIA.md o GUIA-ARCHIVO.md según
+  dónde viva esa sesión — + práctica nueva del tema).
 - GRADUACIÓN: r3 bien → la práctica se gradúa; sus conceptos van a
   la lista "CONCEPTOS DOMINADOS" (final de la sección REPASOS).
 - REPASOS INTEGRADORES: con 3+ conceptos dominados, Claude puede
@@ -169,8 +170,10 @@ fijan más que un mazo exhaustivo.
 4. Si la tanda trae ejercicios del material: avisar cuáles son y
    aplicar la regla de prácticas (archivo de arranque + registro).
 5. Verificar comprensión con 1-2 preguntas cortas antes de cerrar.
-6. Actualizar GUIA.md (sesión nueva con el formato del archivo;
-   vocabulario si el material está en otro idioma).
+6. Actualizar GUIA.md agregando la sesión en FORMATO CORTO (5-8
+   bullets, SIN bloques de código ni contenido repetido del chat,
+   máx ~15 líneas; ver el formato de referencia al final de la guía),
+   más vocabulario si el material está en otro idioma.
 7. Agregar 1-2 frases de la sesión a MECANOGRAFIA.md y volcar todas
    aplanadas al archivo de ttyper (ver regla de mecanografía).
 8. Agregar las tarjetas 80/20 de la sesión a ANKI.txt (ver regla de
@@ -200,8 +203,16 @@ fijan más que un mazo exhaustivo.
 ### Memoria y contexto
 
 - Engram: project = nombre de esta carpeta (NO inventar otro).
-- Inicio de sesión: Engram + GUIA.md + EJERCICIOS.md (incluye repasos
-  vencidos). Cierre: resumen + guardar en Engram.
+- Inicio de sesión: Engram + SOLO el INICIO RÁPIDO de GUIA.md
+  (primeras ~15 líneas, con Read limit) + EJERCICIOS.md (incluye
+  repasos vencidos). NUNCA leer GUIA.md completa ni GUIA-ARCHIVO.md
+  al inicio — regla de ahorro de contexto/créditos. Cierre: resumen +
+  guardar en Engram.
+- GUIA-ARCHIVO.md (se crea cuando la guía crece): cuando GUIA.md
+  supere ~500 líneas, Claude mueve las sesiones viejas a
+  GUIA-ARCHIVO.md (mismo repo, viaja por git). Ese archivo NO se lee
+  al inicio de sesión: solo consulta puntual para RE-ESTUDIO o si el
+  usuario pide releer una sesión vieja.
 - El usuario puede trabajar desde VARIOS PCs: GUIA.md y EJERCICIOS.md
   (que viajan por git) son la FUENTE DE VERDAD; Engram es local de
   cada máquina. Ante contradicción, mandan los archivos.

@@ -46,7 +46,9 @@ Tarjetas Anki (ANKI.txt):
 - Re-importar el MISMO archivo no duplica: actualiza las tarjetas
   que cambiaron y agrega las nuevas (Anki matchea por la pregunta).
 - Rutina: después de cada git pull con tarjetas nuevas, re-importo.
-- GUIA.md → la guía por sesiones (la escribe Claude)
+- GUIA.md → la guía activa por sesiones, en formato corto (la escribe Claude)
+- GUIA-ARCHIVO.md → sesiones viejas archivadas cuando la guía crece
+  (la crea Claude; solo se consulta para re-estudio)
 - EJERCICIOS.md → prácticas y repasos (los escribe Claude)
 - RUTA.md → el plan por fases hasta mi objetivo (lo mantiene Claude)
 - CLAUDE.md → las reglas del profe (se adaptan al tema con el MENSAJE 0)
@@ -153,7 +155,8 @@ AHORA HACÉ EL SETUP (protocolo completo en CLAUDE.md, sección
 --- MENSAJE 1 — arranque del día (s02 en adelante) ---
 
 ```
-Nueva sesión de estudio. Leé CLAUDE.md, GUIA.md y EJERCICIOS.md,
+Nueva sesión de estudio. Leé CLAUDE.md, el INICIO RÁPIDO de GUIA.md
+(solo esa sección, no toda la guía) y EJERCICIOS.md,
 buscá en Engram (project = nombre de esta carpeta) dónde quedamos, y
 decime: (1) qué vimos la última vez en una línea, (2) qué prácticas
 tengo pendientes, (3) si hay algún repaso vencido (fechas de la

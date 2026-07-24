@@ -21,34 +21,24 @@ Prácticas: ver EJERCICIOS.md.
 ============================================================
 (ACÁ VAN LAS SESIONES — Claude agrega la SESIÓN #01 en la primera
 clase y sigue numerando hacia abajo, una sección por sesión, usando
-el formato de referencia del final del archivo)
+el formato CORTO de referencia del final del archivo. Cuando este
+archivo supere ~500 líneas, Claude mueve las sesiones viejas a
+GUIA-ARCHIVO.md — ver la regla en CLAUDE.md.)
 ============================================================
 
 # ============================================================
 # FORMATO DE CADA SESIÓN (referencia para Claude — copiar y llenar)
+# Formato CORTO obligatorio: 5-8 bullets, SIN bloques de código ni
+# contenido repetido del chat (eso ya vive en el chat, el material y
+# los archivos de práctica). Sin narrar las dudas (tema + veredicto
+# en una línea). Máximo ~15 líneas por sesión.
 # ============================================================
 
 SESIÓN #NN — [fecha] — [tema] (punto exacto del material, % avance)
-
-IDEAS CLAVE
-
-- ...
-
-CONTENIDO CLAVE (lo esencial de la tanda, ya explicado en el chat)
-
-- ...
-
-EJERCICIOS DEL MATERIAL EN ESTA TANDA (nombre + hecho/pendiente)
-
-- ...
-
-NOTA DEL PROFE (cosas que el material no dice pero importan)
-
-- ...
-
-DUDAS QUE SURGIERON (y su respuesta corta)
-
-- ...
-
-PRÁCTICAS CREADAS: #...
-PRÓXIMO PASO: ...
+- [idea clave 1, una línea]
+- [idea clave 2...]
+- Ejercicios de la tanda: [nombre + pendiente/completado, o "ninguno"]
+- Nota del profe: [solo si la hubo, una línea]
+- Dudas: [tema + bien/corregido en una línea, o "ninguna"]
+- PRÁCTICAS CREADAS: [#NN o "ninguna"]
+- PRÓXIMO PASO: [una línea]
