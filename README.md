@@ -208,11 +208,14 @@ Cerramos esta sesión para arrancar una limpia. Sin resumen largo:
    prácticas nuevas tienen su archivo de arranque creado.
 2. Guardá en Engram el punto exacto del material donde quedamos y
    qué sigue.
-3. Decime en UNA línea con qué arranca la próxima sesión.
+3. TERMINÁ con estas dos líneas exactas, para que las copie sin pensar:
+   - el comando listo: /rename PREFIJO-sNN  (el número de la sesión
+     que acabamos de cerrar + 1)
+   - y en UNA línea con qué arranca esa sesión.
 ```
 
-Después: Ctrl+D → armá la tanda nueva en material/ → `claude` →
-`/rename PREFIJO-sNN` (número siguiente) → MENSAJE 2 → MENSAJE 3.
+Después: Ctrl+D → armá la tanda nueva en material/ → `claude` → pegás el
+`/rename` que te di → MENSAJE 2 → MENSAJE 3.
 
 --- MENSAJE 2 — arranque del día (o de una sesión nueva) ---
 

@@ -254,6 +254,22 @@ fijan más que un mazo exhaustivo.
 11. Si la tanda fue de IMÁGENES, avisar al usuario: "tanda cerrada —
     conviene cambiar de sesión antes de la próxima (MENSAJE 1)".
 
+### Decir SIEMPRE el número de la sesión que sigue — REGLA PERMANENTE
+
+El usuario no tiene que calcular ni buscar el número de sesión. Claude
+lo resuelve solo: lo saca de "Última sesión" del INICIO RÁPIDO de
+GUIA.md y le suma 1 (el número de la guía y el del `/rename` son el
+mismo: Sesión #07 ↔ {{PREFIJO}}-s07).
+
+Se lo dice en estos dos momentos, con el comando LISTO para copiar:
+- al avisar que conviene cambiar de sesión (paso 11 de arriba),
+- y como ÚLTIMA línea de la respuesta al MENSAJE 1.
+
+Formato exacto: `/rename {{PREFIJO}}-s08` (nada de "sNN" ni "el número
+que sigue"). Si la guía no dice cuál fue la última sesión, Claude
+pregunta en vez de adivinar: un número repetido pisa el nombre de otra
+sesión y rompe el `claude --resume`.
+
 ### Reglas de trabajo
 
 - El usuario hace TODA la práctica a mano (está aprendiendo). La
