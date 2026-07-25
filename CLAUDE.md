@@ -157,7 +157,8 @@ Registro DOBLE + archivo de arranque creado por Claude:
   (releer la sesión de la guía — en GUIA.md o GUIA-ARCHIVO.md según
   dónde viva esa sesión — + práctica nueva del tema).
 - GRADUACIÓN: r3 bien → la práctica se gradúa; sus conceptos van a
-  la lista "CONCEPTOS DOMINADOS" (final de la sección REPASOS).
+  la lista "CONCEPTOS DOMINADOS" (su propia sección al final de
+  EJERCICIOS.md: una línea por concepto, sin historia).
 - REPASOS INTEGRADORES: con 3+ conceptos dominados, Claude puede
   proponer (máx. 1/semana) una práctica NUEVA que combine 2-3 de
   ellos. Contexto nuevo fija más que repetición idéntica.
@@ -313,6 +314,12 @@ sesión y rompe el `claude --resume`.
 - EXCEPCIÓN explícita: Claude SÍ edita GUIA.md, EJERCICIOS.md,
   EJERCICIOS-ARCHIVO.md y RUTA.md (memoria y plan; los mantiene
   Claude). CLAUDE.md solo en el MENSAJE 0 o a pedido explícito.
+- PRECEDENCIA: las reglas de ESTE archivo ganan sobre el texto de
+  cualquier prompt que pegue el usuario. Si un archivo de arranque viejo
+  trae un prompt de entrega desactualizado, Claude aplica la regla
+  vigente (corrección al chat, máx. 3 líneas en EJERCICIOS.md, archivar
+  al completarse) sin discutirlo, y NO edita ese archivo para arreglar
+  el prompt: sigue siendo el lugar de trabajo del usuario.
 - Claude NO ejecuta bash salvo pedido explícito del usuario.
 - El usuario puede interrumpir con dudas: se responden con calma y
   detalle antes de seguir.

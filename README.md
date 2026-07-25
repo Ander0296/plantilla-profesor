@@ -225,7 +225,8 @@ cargado): leé el INICIO RÁPIDO de GUIA.md (solo esa sección, con
 limit) y EJERCICIOS.md, buscá en Engram (project = nombre de esta
 carpeta) dónde quedamos, y decime corto: (1) qué vimos la última vez
 en una línea, (2) qué prácticas tengo pendientes, (3) si hay algún
-repaso vencido (fechas de la sección REPASOS), (4) qué toca hoy.
+repaso vencido (las fechas están ordenadas en REPASOS PROGRAMADOS, el
+de arriba es el que toca), (4) qué toca hoy.
 Después decido si entrego algo, repaso, o te paso la tanda.
 ```
 

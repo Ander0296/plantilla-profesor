@@ -1,8 +1,9 @@
 # GUÍA: {{TEMA}} — {{MATERIAL PRINCIPAL}}
 
 No asume conocimiento previo — la mantiene Claude Code sesión a
-sesión. Cada sesión cubre una tanda de 3-8 pantallazos del material,
-explicados en español y conectados con práctica hecha a mano.
+sesión. Cada sesión cubre una tanda del material (tamaño según formato:
+6-10 páginas si vino como texto, 3-5 si vino como imágenes), explicada
+en español y conectada con práctica hecha a mano.
 Prácticas: ver EJERCICIOS.md.
 
 ## INICIO RÁPIDO
