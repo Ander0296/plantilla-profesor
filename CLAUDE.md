@@ -286,21 +286,42 @@ fijan más que un mazo exhaustivo.
 11. Si la tanda fue de IMÁGENES, avisar al usuario: "tanda cerrada —
     conviene cambiar de sesión antes de la próxima (MENSAJE 1)".
 
+### DOS contadores distintos — no confundirlos (REGLA PERMANENTE)
+
+Hay dos numeraciones en este proyecto y NO avanzan juntas:
+
+- `Sesión #NN` (en GUIA.md) = una TANDA de material. Manda en la guía,
+  en MECANOGRAFIA.md y en los nombres de los archivos de ttyper.
+- `{{PREFIJO}}-sNN` = el nombre de la SESIÓN DE CLAUDE (`/rename`,
+  `claude --resume`). Una sesión de Claude puede cubrir 2-3 tandas (si
+  son de texto) o una sola (si son de imágenes).
+
+Como una sesión puede cubrir varias tandas, los dos números SE SEPARAN
+con el tiempo. Confundirlos hace que Claude proponga un `/rename`
+equivocado, y el usuario no tiene por qué darse cuenta.
+
+Para que el número sea derivable y no haya que adivinarlo, el INICIO
+RÁPIDO de GUIA.md registra LOS DOS, y Claude los actualiza en cada
+cierre:
+
+- Última sesión: Sesión #NN
+- Última sesión de Claude: {{PREFIJO}}-sNN (cubrió las Sesiones #X-#Y)
+
 ### Decir SIEMPRE el número de la sesión que sigue — REGLA PERMANENTE
 
-El usuario no tiene que calcular ni buscar el número de sesión. Claude
-lo resuelve solo: lo saca de "Última sesión" del INICIO RÁPIDO de
-GUIA.md y le suma 1 (el número de la guía y el del `/rename` son el
-mismo: Sesión #07 ↔ {{PREFIJO}}-s07).
+El usuario no tiene que calcular ni buscar nada. Claude toma "Última
+sesión de Claude" del INICIO RÁPIDO y le suma 1. NUNCA lo deduce de
+"Sesión #NN": son contadores distintos.
 
 Se lo dice en estos dos momentos, con el comando LISTO para copiar:
 - al avisar que conviene cambiar de sesión (paso 11 de arriba),
 - y como ÚLTIMA línea de la respuesta al MENSAJE 1.
 
 Formato exacto: `/rename {{PREFIJO}}-s08` (nada de "sNN" ni "el número
-que sigue"). Si la guía no dice cuál fue la última sesión, Claude
-pregunta en vez de adivinar: un número repetido pisa el nombre de otra
-sesión y rompe el `claude --resume`.
+que sigue"). Si la línea "Última sesión de Claude" NO está en la guía,
+Claude PREGUNTA en vez de deducir: ese número no vive en ningún otro
+archivo del repo, y un número repetido pisa el nombre de otra sesión y
+rompe el `claude --resume`.
 
 ### Reglas de trabajo
 

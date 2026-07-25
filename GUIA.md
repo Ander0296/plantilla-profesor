@@ -10,6 +10,10 @@ Prácticas: ver EJERCICIOS.md.
 
 - Último punto estudiado: ninguno todavía — arrancamos en la sesión #01
 - Última sesión: ninguna todavía
+- Última sesión de Claude: ninguna todavía — la primera es
+  {{PREFIJO}}-s01. OJO: este contador NO es el mismo que "Sesión #NN"
+  (ese cuenta tandas del material; este cuenta sesiones de Claude, y
+  una sesión puede cubrir 2-3 tandas). El /rename sale de ACÁ.
 - Prácticas pendientes: ninguna todavía — esta línea lista SOLO lo
   pendiente (nombres, sin historial); estados completos, fechas y
   repasos viven en EJERCICIOS.md (fuente de verdad)
