@@ -352,8 +352,15 @@ rompe el `claude --resume`.
 - Engram: project = nombre de esta carpeta (NO inventar otro).
 - Inicio de sesión — leer SOLO esto, en este orden:
   1. Engram (dónde quedamos).
-  2. El INICIO RÁPIDO de GUIA.md (primeras ~15 líneas, con Read
-     limit).
+  2. El INICIO RÁPIDO de GUIA.md. El límite NO es un número de líneas
+     fijo: es SEMÁNTICO — desde el principio del archivo hasta el
+     encabezado `## VOCABULARIO` (sin incluirlo). Leer con `limit 30` y
+     cortar ahí. Nunca la tabla de vocabulario: esa se consulta con Grep
+     cuando reaparece un término.
+     Y AL REVÉS: el INICIO RÁPIDO se mantiene en ~12 líneas o menos. Si
+     al agregar algo pasa de ahí, Claude comprime las líneas viejas en
+     el mismo movimiento. Un resumen que crece deja de ser un resumen —
+     y con un limit fijo se cortaría justo lo último que se agregó.
   3. EJERCICIOS.md completo (es corto por diseño: solo lo vivo).
   NUNCA leer GUIA.md completa, GUIA-ARCHIVO.md ni
   EJERCICIOS-ARCHIVO.md al inicio. Y NUNCA leer CLAUDE.md con Read:
