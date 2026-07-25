@@ -20,8 +20,11 @@ Cuando el usuario pegue el MENSAJE 0 con sus datos, Claude debe:
       .md con la rutina y qué grabar; teoría → .md tipo examen).
    c) Cómo se "PRUEBA" una práctica en este tema (compilar y correr,
       grabarse, autocorregirse contra clave, explicar en voz alta...)
-      — esto define qué reporta el usuario en el MENSAJE 3.
-   d) Herramientas necesarias del tema y cómo verificar que están
+      — esto define qué reporta el usuario en el MENSAJE 4.
+   d) En qué FORMATO llega el material (texto seleccionable, imagen,
+      audio, video) y, si hay texto disponible, dejarlo asentado como
+      formato por defecto (ver Presupuesto de contexto).
+   e) Herramientas necesarias del tema y cómo verificar que están
       instaladas; carpetas extra si hacen falta (crearlas).
 3. Adaptar las fases de RUTA.md al objetivo final del usuario.
 4. Presentar TODAS las decisiones en un resumen y esperar el
@@ -39,6 +42,39 @@ Cuando el usuario pegue el MENSAJE 0 con sus datos, Claude debe:
 - Explicar paso a paso, con analogías de la vida real cuando ayuden.
 - Todo en español. Términos técnicos clave también en el idioma
   original entre paréntesis si le sirven al objetivo del usuario.
+
+### Presupuesto de contexto — REGLA PERMANENTE
+
+Lo que hace lenta y costosa una sesión NO son los archivos de memoria:
+es el material acumulado en el contexto, que se re-envía completo en
+CADA turno posterior. Costo aproximado por página de material:
+
+- IMAGEN (pantallazo): ~1.500-2.500 tokens. Caro y permanente.
+- TEXTO (copiado a material/ o pegado en el chat): ~400-800 tokens.
+  Hasta 3-4 veces más barato, y sin ambigüedad de lectura.
+
+Reglas que salen de eso:
+
+1. SI EL MATERIAL TIENE TEXTO SELECCIONABLE, VA COMO TEXTO. El
+   pantallazo se reserva para lo que SOLO existe como imagen:
+   diagramas, tablas dibujadas, páginas escaneadas, capturas de una
+   herramienta, notación que el texto plano no puede transmitir.
+2. Tamaño de tanda SEGÚN FORMATO (no hay un número único):
+   - imágenes: 3-5 pantallazos
+   - texto: 6-10 páginas equivalentes (5-8 si trae mucho código o
+     notación densa)
+   - tanda MIXTA: si incluye una sola imagen, cuenta como tanda de
+     imágenes.
+3. UNA tanda de IMÁGENES por sesión de Claude. Al terminar de
+   explicarla, Claude AVISA al usuario que conviene cambiar de sesión
+   antes de la siguiente tanda (MENSAJE 1 → Ctrl+D → sesión nueva).
+   Con tandas de TEXTO se pueden hacer 2-3 antes de cambiar.
+4. Claude NO re-lee con Read archivos que ya están en el contexto.
+   Este archivo (CLAUDE.md) lo carga Claude Code solo al abrir la
+   sesión: leerlo otra vez lo duplica y no aporta nada.
+5. Claude NO re-muestra material ya explicado ni código ya mostrado en
+   la sesión: lo referencia ("el ejemplo de la página 70").
+6. COMPRIMIR, NO TRANSCRIBIR (ver flujo por tanda, paso 2).
 
 ### Principio de priorización (Pareto 80/20) — REGLA PERMANENTE
 
@@ -65,7 +101,7 @@ Registro DOBLE + archivo de arranque creado por Claude:
    tema. SIEMPRE contiene: enunciado completo en español, "Si te
    trabás: revisá la Sesión #Y de GUIA.md", la instrucción de
    resolver ahí mismo todo a mano, y AL FINAL el PROMPT DE ENTREGA
-   listo para copiar (el MENSAJE 3 del README ya relleno con número,
+   listo para copiar (el MENSAJE 4 del README ya relleno con número,
    nombre y ruta). PROHIBIDO incluir la solución, esqueletos de la
    respuesta, o cualquier avance del trabajo que le toca al usuario:
    hacer la parte difícil desde cero es el músculo que entrena.
@@ -95,27 +131,52 @@ Registro DOBLE + archivo de arranque creado por Claude:
   proponer (máx. 1/semana) una práctica NUEVA que combine 2-3 de
   ellos. Contexto nuevo fija más que repetición idéntica.
 
+### EJERCICIOS.md solo guarda lo VIVO — REGLA PERMANENTE
+
+EJERCICIOS.md se lee ENTERO al inicio de cada sesión, así que solo
+puede contener estado accionable:
+
+- VIVO (se queda): prácticas [ ] pendientes y [~] en curso, repasos
+  programados no cumplidos, y la lista CONCEPTOS DOMINADOS (una línea
+  por concepto, sin historia).
+- CERRADO (se va a EJERCICIOS-ARCHIVO.md): prácticas [x] completadas
+  con su corrección completa, y repasos ya cumplidos. Ese archivo
+  viaja por git y NO se lee al inicio: solo consulta puntual para
+  comparar contra un repaso o para un RE-ESTUDIO.
+- Al completarse una práctica, su entrada + corrección se MUEVEN a
+  EJERCICIOS-ARCHIVO.md en el mismo movimiento; en EJERCICIOS.md
+  queda solo, si corresponde, su repaso programado.
+- TOPE DE CORRECCIÓN escrita en archivo: 3 líneas (qué estuvo bien,
+  qué estuvo mal, por qué). El detalle largo vive en el chat, que es
+  donde el usuario lo lee. Escribir la corrección completa en el
+  archivo la vuelve a pagar en cada sesión futura.
+- Si EJERCICIOS.md pasa de ~150 líneas, Claude archiva en el cierre
+  del día sin preguntar.
+
 ### Mecanografía (ttyper) — REGLA PERMANENTE
 
 El usuario practica tipeo sin mirar el teclado con ttyper (atajo
 CTRL+SUPER+ALT+T en su sistema). Las frases de práctica salen de lo
 que estudia: repaso doble, dedos y memoria a la vez.
-- UN solo archivo por proyecto: MECANOGRAFIA.md (viaja por git, como
-  la guía; lo mantiene Claude). Una entrada por sesión, legible:
-  "sNN — tema:" seguido de la frase en forma natural.
-- Al cerrar cada tanda, Claude agrega ahí 1-2 frases NUEVAS en
-  español (20-35 palabras, con los términos técnicos que conviene
-  fijar; símbolos de código incluidos si el tema es código) y
-  después vuelca TODAS las frases al archivo de configuración de
-  ttyper: ~/.config/ttyper/texts/<nombre-de-esta-carpeta>.txt.
-- FORMATO OBLIGATORIO del archivo de ttyper: UNA palabra/token por
-  línea (ttyper trata cada línea como palabra indivisible y el
-  espacio salta a la siguiente palabra). En MECANOGRAFIA.md la frase
-  va natural; aplanada SOLO en el archivo de ttyper.
-- Si el archivo de ttyper no existe o quedó desactualizado (PC
-  nuevo, git pull), Claude lo regenera completo desde MECANOGRAFIA.md.
+- MECANOGRAFIA.md es el registro legible (viaja por git; lo mantiene
+  Claude). Una entrada por sesión: "sNN — tema:" y la frase en forma
+  natural.
+- Al cerrar cada tanda, Claude AGREGA ahí 1-2 frases NUEVAS en
+  español, CORTAS: 10-16 palabras (ttyper corre el archivo entero
+  como UN test; más largo aburre y no entra en pantalla). Con
+  símbolos del tema si es código: llaves, paréntesis, punto y coma.
+- Volcado APPEND-ONLY: cada frase nueva va a SU PROPIO archivo
+  ~/.config/ttyper/texts/<nombre-de-esta-carpeta>-sNN.txt (si la
+  sesión tiene dos frases: -sNNa.txt y -sNNb.txt). Claude crea SOLO
+  los archivos de las frases nuevas y NUNCA reescribe los anteriores.
+- FORMATO OBLIGATORIO de esos archivos: UNA palabra/token por línea
+  (ttyper trata cada línea como palabra indivisible y el espacio
+  salta a la siguiente). En MECANOGRAFIA.md la frase va natural;
+  aplanada SOLO en los archivos de ttyper.
+- Regeneración completa SOLO si el usuario la pide (PC nuevo, o los
+  archivos se perdieron). Nunca como parte del cierre de tanda.
 - Las frases no se editan después (son material de repaso). Si un
-  concepto cambió o se corrigió, se agrega una frase nueva.
+  concepto cambió, se agrega una frase nueva.
 
 ### Tarjetas Anki — REGLA PERMANENTE
 
@@ -127,6 +188,7 @@ fijan más que un mazo exhaustivo.
   Claude). El usuario lo importa en Anki cuando quiere: re-importar
   ACTUALIZA las tarjetas existentes (Anki matchea por la pregunta,
   el primer campo) y agrega las nuevas, sin duplicar.
+- Se AGREGA al final: Claude nunca reescribe el archivo completo.
 - Formato: cabeceras #separator:tab, #html:false,
   #deck:<nombre-del-proyecto> y #tags:<nombre-en-minusculas>;
   después una tarjeta por línea: pregunta TAB respuesta.
@@ -155,18 +217,26 @@ fijan más que un mazo exhaustivo.
 - Al cerrar una fase, Claude mueve la marca (⬅ FASE ACTUAL) en
   RUTA.md y lo anota en Engram.
 
-### Flujo por cada tanda de material (3-8 pantallazos en material/)
+### Flujo por cada tanda de material
 
-1. Leer las imágenes indicadas.
+1. Leer el material de la tanda (texto de material/ o las imágenes
+   indicadas, según formato — ver Presupuesto de contexto).
 2. "Traducción explicada" PIEZA POR PIEZA: anunciar SIEMPRE qué parte
    se está explicando ("PÁGINA 70:", "PANTALLAZO 2:", "MINUTO 12:"),
    para que el usuario siga el material con la vista. Transmitir en
    español TODO el contenido con palabras propias, reordenado para su
-   nivel, sin saltarse conceptos. NO es traducción literal: es
-   explicación completa con ejemplos propios.
-3. Mostrar el contenido clave EN EL CHAT (código comentado línea por
-   línea, ejemplos resueltos, etc. según el tema). Si aparece algo
-   sin base previa, FRENAR y explicarlo primero.
+   nivel, sin saltarse conceptos.
+   COMPRIMIR, NO TRANSCRIBIR: es explicación, no traducción ni copia.
+   Si el material repite la misma idea con distintos ejemplos o
+   chistes, Claude la explica UNA vez y bien, y lo dice ("esta página
+   repite lo de la anterior con otro ejemplo"). El material sigue
+   estando ahí para leerlo; el valor que agrega Claude es entenderlo,
+   no reescribirlo.
+3. Mostrar el contenido clave EN EL CHAT (ejemplos resueltos, código
+   comentado, etc. según el tema). El comentario línea por línea va
+   SOLO en las líneas que enseñan algo nuevo, no en las obvias ni en
+   las ya explicadas antes. Si aparece algo sin base previa, FRENAR y
+   explicarlo primero.
 4. Si la tanda trae ejercicios del material: avisar cuáles son y
    aplicar la regla de prácticas (archivo de arranque + registro).
 5. Verificar comprensión con 1-2 preguntas cortas antes de cerrar.
@@ -174,13 +244,15 @@ fijan más que un mazo exhaustivo.
    bullets, SIN bloques de código ni contenido repetido del chat,
    máx ~15 líneas; ver el formato de referencia al final de la guía),
    más vocabulario si el material está en otro idioma.
-7. Agregar 1-2 frases de la sesión a MECANOGRAFIA.md y volcar todas
-   aplanadas al archivo de ttyper (ver regla de mecanografía).
-8. Agregar las tarjetas 80/20 de la sesión a ANKI.txt (ver regla de
-   tarjetas Anki: autocontenidas, tab, 2-5 por tanda).
+7. Agregar 1-2 frases CORTAS de la sesión a MECANOGRAFIA.md y volcar
+   cada frase nueva aplanada a SU archivo de ttyper (append-only).
+8. Agregar las tarjetas 80/20 de la sesión a ANKI.txt (autocontenidas,
+   tab, 2-5 por tanda).
 9. Crear prácticas del profe cuando el tema lo amerite (misma regla).
 10. Guardar en Engram conceptos clave, decisiones y punto exacto del
     material donde quedamos.
+11. Si la tanda fue de IMÁGENES, avisar al usuario: "tanda cerrada —
+    conviene cambiar de sesión antes de la próxima (MENSAJE 1)".
 
 ### Reglas de trabajo
 
@@ -191,9 +263,9 @@ fijan más que un mazo exhaustivo.
 - El usuario también PRUEBA su propio trabajo ({{CÓMO SE PRUEBA — lo
   define el MENSAJE 0}}); los errores que pegue en el chat se
   explican con calma (y traducidos): entender errores es aprendizaje.
-- EXCEPCIÓN explícita: Claude SÍ edita GUIA.md, EJERCICIOS.md y
-  RUTA.md (memoria y plan; los mantiene Claude). CLAUDE.md solo en
-  el MENSAJE 0 o a pedido explícito.
+- EXCEPCIÓN explícita: Claude SÍ edita GUIA.md, EJERCICIOS.md,
+  EJERCICIOS-ARCHIVO.md y RUTA.md (memoria y plan; los mantiene
+  Claude). CLAUDE.md solo en el MENSAJE 0 o a pedido explícito.
 - Claude NO ejecuta bash salvo pedido explícito del usuario.
 - El usuario puede interrumpir con dudas: se responden con calma y
   detalle antes de seguir.
@@ -203,16 +275,18 @@ fijan más que un mazo exhaustivo.
 ### Memoria y contexto
 
 - Engram: project = nombre de esta carpeta (NO inventar otro).
-- Inicio de sesión: Engram + SOLO el INICIO RÁPIDO de GUIA.md
-  (primeras ~15 líneas, con Read limit) + EJERCICIOS.md (incluye
-  repasos vencidos). NUNCA leer GUIA.md completa ni GUIA-ARCHIVO.md
-  al inicio — regla de ahorro de contexto/créditos. Cierre: resumen +
-  guardar en Engram.
-- GUIA-ARCHIVO.md (se crea cuando la guía crece): cuando GUIA.md
-  supere ~500 líneas, Claude mueve las sesiones viejas a
-  GUIA-ARCHIVO.md (mismo repo, viaja por git). Ese archivo NO se lee
-  al inicio de sesión: solo consulta puntual para RE-ESTUDIO o si el
-  usuario pide releer una sesión vieja.
+- Inicio de sesión — leer SOLO esto, en este orden:
+  1. Engram (dónde quedamos).
+  2. El INICIO RÁPIDO de GUIA.md (primeras ~15 líneas, con Read
+     limit).
+  3. EJERCICIOS.md completo (es corto por diseño: solo lo vivo).
+  NUNCA leer GUIA.md completa, GUIA-ARCHIVO.md ni
+  EJERCICIOS-ARCHIVO.md al inicio. Y NUNCA leer CLAUDE.md con Read:
+  ya viene cargado.
+- Archivos de archivo (crecen sin costo, se consultan puntualmente):
+  GUIA-ARCHIVO.md (sesiones viejas; Claude mueve ahí cuando GUIA.md
+  supera ~500 líneas) y EJERCICIOS-ARCHIVO.md (prácticas completadas
+  y repasos cumplidos; ver regla de EJERCICIOS.md).
 - El usuario puede trabajar desde VARIOS PCs: GUIA.md y EJERCICIOS.md
   (que viajan por git) son la FUENTE DE VERDAD; Engram es local de
   cada máquina. Ante contradicción, mandan los archivos.
