@@ -17,6 +17,7 @@ Prácticas: ver EJERCICIOS.md.
 - Prácticas pendientes: ninguna todavía — esta línea lista SOLO lo
   pendiente (nombres, sin historial); estados completos, fechas y
   repasos viven en EJERCICIOS.md (fuente de verdad)
+- Último triage (`/pendientes`): nunca todavía
 - Entorno verificado: (lo completa Claude en el `/setup`)
 
 ## VOCABULARIO (solo si el material está en otro idioma; una fila por término nuevo)

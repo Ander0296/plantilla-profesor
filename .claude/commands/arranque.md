@@ -15,7 +15,10 @@ Recordá:
    EJERCICIOS.md entero.
 3. Reporte en MENOS DE 10 líneas: dónde quedamos, prácticas
    pendientes, repasos vencidos y qué toca hoy con su porqué.
-4. Cerrás con el bloque `▶ SIGUE`, que empieza con el `/rename` de
+4. Si la línea "Último triage" del INICIO RÁPIDO tiene más de 7 días
+   (o dice "nunca"), avisámelo en UNA línea sugiriendo `/pendientes`.
+   Una sola línea, sin insistir.
+5. Cerrás con el bloque `▶ SIGUE`, que empieza con el `/rename` de
    ESTA sesión copiado tal cual de la línea **PRÓXIMA SESIÓN** del
    INICIO RÁPIDO. Si esa línea no está, PREGUNTAME: no la deduzcas.
-5. Te detenés. No arranques a explicar nada hasta que yo responda.
+6. Te detenés. No arranques a explicar nada hasta que yo responda.

@@ -32,8 +32,14 @@ Ahora hacé el setup siguiendo el **Protocolo de setup** de CLAUDE.md
    necesarias (y cómo verificar que están) y carpetas extra si hacen
    falta (crealas).
 2. Adaptá las fases de `RUTA.md` a MI objetivo final.
-3. Adaptá los comandos de `.claude/commands/` al tema si algo no
-   aplica tal cual (por ejemplo, cómo se prueba una práctica).
+3. Adaptá al tema lo que no aplique tal cual:
+   - los comandos de `.claude/commands/` (por ejemplo, cómo se prueba
+     una práctica en `/entrega`, y los tipos de pregunta de `/examen`);
+   - la línea `CARPETAS_PROTEGIDAS` de
+     `.claude/hooks/proteger-mi-trabajo.sh`, agregando las carpetas de
+     trabajo que sume este tema (diagramas/, grabaciones/, textos/...).
+     Ese hook es el candado que impide que yo te corrija el trabajo
+     editándolo en vez de explicándotelo.
 4. Dejá la línea **PRÓXIMA SESIÓN** del INICIO RÁPIDO de `GUIA.md`
    apuntando a la sesión que sigue.
 5. Agregá al `.gitignore` los temporales típicos de este tema.

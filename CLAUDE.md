@@ -314,6 +314,15 @@ puntero "Si te trabás" (ej: "Checklist: ToDo/nombre-del-tema.md").
 
 1. Leer el material de la tanda (texto de material/ o las imágenes
    indicadas, según formato — ver Presupuesto de contexto).
+   Si falta un pedazo, CLASIFICARLO EN EL MOMENTO (regla de
+   PENDIENTES.md) y decirlo en UNA línea: "cubierto igual" (se descarta
+   y no se anota en ningún lado), "hueco de formato" (no se pudo pasar
+   y el concepto no quedó cubierto → va a PENDIENTES.md y se pide ESE
+   pedazo en la próxima tanda) o "diferido a propósito" (va a
+   PENDIENTES.md con su condición de rescate).
+   PROHIBIDO acumular referencias sueltas sin decir QUÉ falta: una
+   referencia sin contenido no se puede triagear nunca, y termina
+   siendo deuda falsa que se relee en cada sesión.
 2. "Traducción explicada" PIEZA POR PIEZA: anunciar SIEMPRE qué parte
    se está explicando ("PÁGINA 70:", "PANTALLAZO 2:", "MINUTO 12:"),
    para que el usuario siga el material con la vista. Transmitir en
@@ -394,10 +403,12 @@ Es lo primero de CADA sesión. Claude:
 
 4. Reporta en MENOS DE 10 LÍNEAS: dónde quedamos, prácticas
    pendientes, repasos vencidos y qué toca hoy con su porqué.
-5. Cierra con el bloque `▶ SIGUE`, que empieza SIEMPRE con el
+5. Si la línea "Último triage" del INICIO RÁPIDO tiene más de 7 días
+   (o dice "nunca"), lo avisa en UNA línea sugiriendo `/pendientes`.
+6. Cierra con el bloque `▶ SIGUE`, que empieza SIEMPRE con el
    `/rename` de ESTA sesión, copiado tal cual de la línea PRÓXIMA
    SESIÓN del INICIO RÁPIDO.
-6. **Se detiene.** No arranca el trabajo hasta que el usuario responda.
+7. **Se detiene.** No arranca el trabajo hasta que el usuario responda.
 
 ### Los comandos
 
@@ -411,7 +422,13 @@ Viven en `.claude/commands/`. Claude los nombra por su nombre exacto:
 | `/repaso` | hacer un repaso vencido, desde cero |
 | `/cambio` | cerrar esta sesión y abrir una limpia (mitad del día) |
 | `/cierre` | cerrar el día, guardar todo y subir a git |
+| `/pendientes` | triage semanal: qué se pudre, qué se salda, qué se da de baja |
+| `/examen` | examen en frío, sin material al lado |
 | `/setup` | configuración inicial del proyecto (una sola vez) |
+
+Los automatismos del harness viven en `.claude/hooks/` +
+`.claude/settings.json`: `git-al-abrir.sh` (pull al abrir la sesión) y
+`proteger-mi-trabajo.sh` (el candado, ver Reglas de trabajo).
 
 # ============================================================
 # LOS DOS CONTADORES — no confundirlos (REGLA PERMANENTE)
@@ -491,6 +508,14 @@ Si algo de eso hace falta, se explica y se espera la decisión.
   ÚNICA excepción de Claude: crear archivos de arranque (solo
   enunciado + prompt). Claude muestra ejemplos en el chat y corrige
   lo que el usuario produjo.
+- EL CANDADO (hook `proteger-mi-trabajo.sh`): el harness BLOQUEA
+  mecánicamente todo Edit dentro de las carpetas de trabajo
+  (ejercicios/ y las que sume el tema en el setup) y todo Write que
+  pise un archivo que ya existe ahí. Solo pasa la CREACIÓN de un
+  archivo nuevo (el de arranque). Si un Write o un Edit vuelve denegado
+  con ese motivo, NO es un error del sistema ni algo para esquivar: es
+  la regla de arriba aplicada. La corrección va al chat; el archivo lo
+  cambia el usuario.
 - El usuario también PRUEBA su propio trabajo ({{CÓMO SE PRUEBA — lo
   define el setup}}); los errores que pegue en el chat se explican
   con calma (y traducidos): entender errores es aprendizaje.
@@ -533,6 +558,9 @@ Si algo de eso hace falta, se explica y se espera la decisión.
   GUIA-ARCHIVO.md (sesiones viejas; Claude mueve ahí cuando GUIA.md
   supera ~500 líneas) y EJERCICIOS-ARCHIVO.md (prácticas completadas
   y repasos cumplidos; ver regla de EJERCICIOS.md).
+- PENDIENTES.md: la deuda que NO es una práctica (huecos de formato del
+  material, contenido diferido). Tampoco se lee al inicio: lo lee
+  `/pendientes`.
 - El usuario puede trabajar desde VARIOS PCs: GUIA.md y EJERCICIOS.md
   (que viajan por git) son la FUENTE DE VERDAD; Engram es local de
   cada máquina. Ante contradicción, mandan los archivos.
