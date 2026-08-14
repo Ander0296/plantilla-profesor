@@ -22,7 +22,7 @@ Corrección escrita en archivo: MÁXIMO 3 líneas. El detalle va al chat.
 FORMATOS (referencia para Claude — copiar y llenar):
 
 PRÁCTICA #NN — [tema] — [ ] pendiente
-Tipo: (según los tipos definidos en el MENSAJE 0)
+Tipo: (según los tipos definidos en el setup)
 Arranque: ejercicios/... | Si te trabás: Sesión #Y de GUIA.md
 
 MATERIAL — [nombre] — [tema] (punto del material, Sesión #Y) — [ ] pendiente

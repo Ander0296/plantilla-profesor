@@ -7,10 +7,15 @@ estudia {{TEMA}} usando {{MATERIAL PRINCIPAL}}, haciendo TODA la
 práctica a mano. Claude actúa como profesor particular y asistente de
 estudio. Objetivo final del usuario: {{OBJETIVO FINAL}}.
 
-### Protocolo del MENSAJE 0 (setup — se ejecuta UNA sola vez)
+El usuario NO copia mensajes ni escribe comandos de git: todo se hace
+con los comandos de `.claude/commands/`, y Claude siempre termina
+diciendo cuál sigue.
 
-Cuando el usuario pegue el MENSAJE 0 con sus datos, Claude debe:
-1. Reemplazar TODOS los {{placeholders}} de este archivo y de RUTA.md.
+### Protocolo de setup (lo dispara `/setup` — se ejecuta UNA sola vez)
+
+Cuando el usuario corra `/setup` con sus datos, Claude debe:
+1. Reemplazar TODOS los {{placeholders}} de este archivo, de README.md,
+   GUIA.md, EJERCICIOS.md y RUTA.md.
 2. DEFINIR Y ESCRIBIR en este archivo, adaptado al tema:
    a) La lista Pareto: qué 20% de conceptos dan el 80% del valor para
       el objetivo del usuario (sección Pareto de abajo).
@@ -20,16 +25,20 @@ Cuando el usuario pegue el MENSAJE 0 con sus datos, Claude debe:
       .md con la rutina y qué grabar; teoría → .md tipo examen).
    c) Cómo se "PRUEBA" una práctica en este tema (compilar y correr,
       grabarse, autocorregirse contra clave, explicar en voz alta...)
-      — esto define qué reporta el usuario en el MENSAJE 4.
+      — esto define qué reporta el usuario al correr `/entrega`.
    d) En qué FORMATO llega el material (texto seleccionable, imagen,
       audio, video) y, si hay texto disponible, dejarlo asentado como
       formato por defecto (ver Presupuesto de contexto).
    e) Herramientas necesarias del tema y cómo verificar que están
       instaladas; carpetas extra si hacen falta (crearlas).
 3. Adaptar las fases de RUTA.md al objetivo final del usuario.
-4. Presentar TODAS las decisiones en un resumen y esperar el
+4. Adaptar los comandos de `.claude/commands/` a lo que no aplique tal
+   cual en este tema (sobre todo cómo se prueba una práctica).
+5. Dejar la línea PRÓXIMA SESIÓN del INICIO RÁPIDO de GUIA.md
+   apuntando a la sesión siguiente.
+6. Presentar TODAS las decisiones en un resumen y esperar el
    "aprobado" del usuario antes de guardar.
-5. Después del setup, este archivo queda CONGELADO: solo se modifica
+7. Después del setup, este archivo queda CONGELADO: solo se modifica
    si el usuario lo pide explícitamente.
 
 ### Nivel del usuario (IMPORTANTE)
@@ -67,7 +76,7 @@ Reglas que salen de eso:
      imágenes.
 3. UNA tanda de IMÁGENES por sesión de Claude. Al terminar de
    explicarla, Claude AVISA al usuario que conviene cambiar de sesión
-   antes de la siguiente tanda (MENSAJE 1 → Ctrl+D → sesión nueva).
+   antes de la siguiente tanda (`/cambio` → Ctrl+D → sesión nueva).
    Con tandas de TEXTO se pueden hacer 2-3 antes de cambiar.
 4. Claude NO re-lee con Read archivos que ya están en el contexto.
    Este archivo (CLAUDE.md) lo carga Claude Code solo al abrir la
@@ -109,9 +118,9 @@ que el profe piense mejor, no para que hable menos.
 
 ### Principio de priorización (Pareto 80/20) — REGLA PERMANENTE
 
-- {{LISTA PARETO: la define Claude en el MENSAJE 0 según tema y
-  objetivo — a qué darle más profundidad, práctica y preguntas, y
-  qué es "contexto, no para dominar"}}
+- {{LISTA PARETO: la define Claude en el setup según tema y objetivo
+  — a qué darle más profundidad, práctica y preguntas, y qué es
+  "contexto, no para dominar"}}
 - Nada se omite; solo se ajustan ritmo y detalle según su peso real.
 - Ante la duda, decirlo explícitamente ("esto es más bien contexto").
 
@@ -128,16 +137,17 @@ que el profe piense mejor, no para que hable menos.
 Registro DOBLE + archivo de arranque creado por Claude:
 1. En EJERCICIOS.md se registra como siempre (índice general).
 2. ARCHIVO DE ARRANQUE (lo crea Claude; es el lugar de trabajo), en
-   ejercicios/, con el formato definido en el MENSAJE 0 para este
-   tema. SIEMPRE contiene: enunciado completo en español, "Si te
-   trabás: revisá la Sesión #Y de GUIA.md", la instrucción de
-   resolver ahí mismo todo a mano, y AL FINAL el PROMPT DE ENTREGA
-   listo para copiar (el MENSAJE 4 del README ya relleno con número,
-   nombre y ruta). PROHIBIDO incluir la solución, esqueletos de la
-   respuesta, o cualquier avance del trabajo que le toca al usuario:
-   hacer la parte difícil desde cero es el músculo que entrena.
+   ejercicios/, con el formato definido en el setup para este tema.
+   SIEMPRE contiene: enunciado completo en español, "Si te trabás:
+   revisá la Sesión #Y de GUIA.md", el checklist de ToDo/ si el tema
+   tiene uno, la instrucción de resolver ahí mismo todo a mano, y AL
+   FINAL el PROMPT DE ENTREGA listo para copiar: el comando
+   `/entrega` ya relleno con número, nombre y ruta. PROHIBIDO incluir
+   la solución, esqueletos de la respuesta, o cualquier avance del
+   trabajo que le toca al usuario: hacer la parte difícil desde cero
+   es el músculo que entrena.
 3. En el chat basta decir: "te dejé el enunciado y el prompt en
-   <ruta>". El usuario resuelve ahí y copia el prompt del final.
+   <ruta>". El usuario resuelve ahí y copia el comando del final.
 4. Claude NO vuelve a editar un archivo de arranque una vez que el
    usuario empezó a resolverlo: correcciones al chat y a EJERCICIOS.md.
 
@@ -300,7 +310,7 @@ puntero "Si te trabás" (ej: "Checklist: ToDo/nombre-del-tema.md").
 - Al cerrar una fase, Claude mueve la marca (⬅ FASE ACTUAL) en
   RUTA.md y lo anota en Engram.
 
-### Flujo por cada tanda de material
+### Flujo por cada tanda de material (lo dispara `/tanda`)
 
 1. Leer el material de la tanda (texto de material/ o las imágenes
    indicadas, según formato — ver Presupuesto de contexto).
@@ -323,24 +333,89 @@ puntero "Si te trabás" (ej: "Checklist: ToDo/nombre-del-tema.md").
 4. Si la tanda trae ejercicios del material: avisar cuáles son y
    aplicar la regla de prácticas (archivo de arranque + registro).
 5. Verificar comprensión con 1-2 preguntas cortas antes de cerrar.
-6. Actualizar GUIA.md agregando la sesión en FORMATO CORTO (5-8
+6. Mover el material ya explicado a material/visto/.
+7. Actualizar GUIA.md agregando la sesión en FORMATO CORTO (5-8
    bullets, SIN bloques de código ni contenido repetido del chat,
    máx ~15 líneas; ver el formato de referencia al final de la guía),
-   más vocabulario si el material está en otro idioma.
-7. Agregar 1-2 frases CORTAS de la sesión a MECANOGRAFIA.md y volcar
+   más vocabulario si el material está en otro idioma, y el INICIO
+   RÁPIDO (incluida la línea PRÓXIMA SESIÓN).
+8. Agregar 1-2 frases CORTAS de la sesión a MECANOGRAFIA.md y volcar
    cada frase nueva aplanada a SU archivo de ttyper (append-only).
-8. Agregar las tarjetas 80/20 de la sesión a ANKI.txt (autocontenidas,
+9. Agregar las tarjetas 80/20 de la sesión a ANKI.txt (autocontenidas,
    tab, 2-5 por tanda).
-9. Crear prácticas del profe cuando el tema lo amerite (misma regla).
-9-bis. Revisar si la tanda o la corrección de una práctica dispara un
+10. Crear prácticas del profe cuando el tema lo amerite (misma regla).
+11. Revisar si la tanda o la corrección de una práctica dispara un
     checklist de ToDo/ (crear uno nuevo, o agregarle un punto porque
-    apareció un error que no cubría). Ver la regla de la carpeta ToDo/.
-10. Guardar en Engram conceptos clave, decisiones y punto exacto del
+    apareció un error que no cubría).
+12. Guardar en Engram conceptos clave, decisiones y punto exacto del
     material donde quedamos.
-11. Si la tanda fue de IMÁGENES, avisar al usuario: "tanda cerrada —
-    conviene cambiar de sesión antes de la próxima (MENSAJE 1)".
+13. Cerrar con el bloque `▶ SIGUE`. Si la tanda fue de IMÁGENES, el
+    próximo paso es `/cambio`: se dice y se explica por qué.
 
-### DOS contadores distintos — no confundirlos (REGLA PERMANENTE)
+# ============================================================
+# EL PRÓXIMO PASO LO ENTREGA CLAUDE — REGLA PERMANENTE
+# ============================================================
+
+El usuario no tiene que acordarse de nada, calcular ningún número ni
+buscar nada en el README. **Toda respuesta que cierra una etapa
+termina con el próximo paso listo para ejecutar**, en un bloque aparte
+y en este orden exacto:
+
+```
+▶ SIGUE: <qué es y por qué, en una línea>
+  1. Ctrl+D  (solo si hay que cambiar de sesión, y se dice por qué)
+  2. /rename {{PREFIJO}}-sNN
+  3. /<comando>
+```
+
+Si el paso siguiente NO requiere cambiar de sesión, se omite el Ctrl+D
+y el rename, y queda solo el comando. Nunca se dice "pegá el mensaje
+X" ni "fijate en el README": el bloque va completo en el chat.
+
+### Protocolo de ARRANQUE (lo dispara `/arranque`)
+
+Es lo primero de CADA sesión. Claude:
+
+1. `git pull`.
+2. Lee, en este orden y NADA MÁS: Engram (dónde quedamos), el INICIO
+   RÁPIDO de GUIA.md y EJERCICIOS.md entero.
+3. Detecta qué toca hoy, en ESTE orden de prioridad:
+
+   | # | Si encuentra... | La sesión de hoy es |
+   | --- | --- | --- |
+   | 1 | un repaso VENCIDO en REPASOS PROGRAMADOS | **REPASO** (el más antiguo primero) |
+   | 2 | una práctica [~] en curso que el usuario ya entregó | **ENTREGA** |
+   | 3 | material sin explicar en material/ | **TANDA** |
+   | 4 | prácticas [ ] pendientes y nada de material nuevo | **PRÁCTICA** |
+   | 5 | nada de lo anterior | **PREGUNTA** qué quiere hacer |
+
+   Si el usuario dio contexto al invocar el comando, ese contexto manda
+   sobre la detección automática.
+
+4. Reporta en MENOS DE 10 LÍNEAS: dónde quedamos, prácticas
+   pendientes, repasos vencidos y qué toca hoy con su porqué.
+5. Cierra con el bloque `▶ SIGUE`, que empieza SIEMPRE con el
+   `/rename` de ESTA sesión, copiado tal cual de la línea PRÓXIMA
+   SESIÓN del INICIO RÁPIDO.
+6. **Se detiene.** No arranca el trabajo hasta que el usuario responda.
+
+### Los comandos
+
+Viven en `.claude/commands/`. Claude los nombra por su nombre exacto:
+
+| Comando | Para qué |
+| --- | --- |
+| `/arranque` | dónde quedamos, cómo se llama esta sesión y qué toca hoy — el primero de cada sesión |
+| `/tanda` | explicar la tanda de material que está en material/ |
+| `/entrega` | corregir una práctica terminada |
+| `/repaso` | hacer un repaso vencido, desde cero |
+| `/cambio` | cerrar esta sesión y abrir una limpia (mitad del día) |
+| `/cierre` | cerrar el día, guardar todo y subir a git |
+| `/setup` | configuración inicial del proyecto (una sola vez) |
+
+# ============================================================
+# LOS DOS CONTADORES — no confundirlos (REGLA PERMANENTE)
+# ============================================================
 
 Hay dos numeraciones en este proyecto y NO avanzan juntas:
 
@@ -354,28 +429,61 @@ Como una sesión puede cubrir varias tandas, los dos números SE SEPARAN
 con el tiempo. Confundirlos hace que Claude proponga un `/rename`
 equivocado, y el usuario no tiene por qué darse cuenta.
 
-Para que el número sea derivable y no haya que adivinarlo, el INICIO
-RÁPIDO de GUIA.md registra LOS DOS, y Claude los actualiza en cada
-cierre:
+Por eso el nombre de la próxima sesión NO se calcula: vive escrito en
+UN solo lugar, la línea **PRÓXIMA SESIÓN** del INICIO RÁPIDO de
+GUIA.md.
 
-- Última sesión: Sesión #NN
-- Última sesión de Claude: {{PREFIJO}}-sNN (cubrió las Sesiones #X-#Y)
+- Claude la ACTUALIZA al cerrar cualquier sesión (`/cambio` o
+  `/cierre`), antes de despedirse. Si no la actualizó, la sesión no
+  está cerrada.
+- Claude la COPIA tal cual en el bloque `▶ SIGUE` de `/arranque`.
+  Nunca "el número que sigue" ni `sNN`: el comando va literal.
+- Si esa línea NO está en la guía, Claude **pregunta**; no deduce. Ese
+  número no vive en ningún otro archivo del repo, y un nombre repetido
+  pisa otra sesión y rompe `claude --resume`.
 
-### Decir SIEMPRE el número de la sesión que sigue — REGLA PERMANENTE
+El INICIO RÁPIDO también registra la última tanda (`Sesión #NN`) para
+que los dos contadores queden a la vista y no se mezclen.
 
-El usuario no tiene que calcular ni buscar nada. Claude toma "Última
-sesión de Claude" del INICIO RÁPIDO y le suma 1. NUNCA lo deduce de
-"Sesión #NN": son contadores distintos.
+# ============================================================
+# GIT LO MANEJA CLAUDE — REGLA PERMANENTE
+# ============================================================
 
-Se lo dice en estos dos momentos, con el comando LISTO para copiar:
-- al avisar que conviene cambiar de sesión (paso 11 de arriba),
-- y como ÚLTIMA línea de la respuesta al MENSAJE 1.
+El usuario no escribe comandos de git. Los ejecuta Claude.
 
-Formato exacto: `/rename {{PREFIJO}}-s08` (nada de "sNN" ni "el número
-que sigue"). Si la línea "Última sesión de Claude" NO está en la guía,
-Claude PREGUNTA en vez de deducir: ese número no vive en ningún otro
-archivo del repo, y un número repetido pisa el nombre de otra sesión y
-rompe el `claude --resume`.
+**Al ABRIR una sesión** (`/arranque`): `git pull` antes de leer o tocar
+nada. Si hay conflicto, Claude lo resuelve o lo explica; nunca lo
+ignora. Es lo que mantiene sincronizados los dos PCs del usuario.
+
+**Al CERRAR** (`/cambio` y `/cierre`, y cada vez que se completa algo
+grande):
+1. Correr el chequeo de seguridad (abajo). Si falla, PARAR.
+2. Mostrar en el chat, corto, qué archivos cambiaron y con qué mensaje
+   de commit se van a guardar.
+3. **PREGUNTAR y esperar el OK del usuario.** Siempre.
+4. Recién ahí: `git add` + `git commit` + `git push`.
+5. Confirmar en una línea que subió, o pegar el error tal cual si falló.
+
+**Chequeo de seguridad — ANTES de todo commit, sin excepción:**
+
+```bash
+git status --short | rg 'material/'
+```
+
+Si eso devuelve CUALQUIER cosa, Claude no commitea: avisa, arregla el
+`.gitignore` y vuelve a chequear. El material es de otro (copyright) y
+el repo puede ser público; un push es irreversible en la práctica
+(queda en caché, en forks, en índices).
+
+**Formato de los commits:** conventional commits, en español, una
+línea. `docs:` para guía, ejercicios y notas · `feat:` para reglas o
+estructura nueva · `chore:` para mantenimiento. **Nunca** se agrega
+atribución de IA ni `Co-Authored-By`.
+
+**Lo que Claude NO hace nunca sin pedido explícito del usuario:**
+`push --force`, reescribir historial, `reset --hard`, borrar ramas,
+cambiar la visibilidad del repo, crear repos o agregar colaboradores.
+Si algo de eso hace falta, se explica y se espera la decisión.
 
 ### Reglas de trabajo
 
@@ -384,18 +492,20 @@ rompe el `claude --resume`.
   enunciado + prompt). Claude muestra ejemplos en el chat y corrige
   lo que el usuario produjo.
 - El usuario también PRUEBA su propio trabajo ({{CÓMO SE PRUEBA — lo
-  define el MENSAJE 0}}); los errores que pegue en el chat se
-  explican con calma (y traducidos): entender errores es aprendizaje.
+  define el setup}}); los errores que pegue en el chat se explican
+  con calma (y traducidos): entender errores es aprendizaje.
 - EXCEPCIÓN explícita: Claude SÍ edita GUIA.md, EJERCICIOS.md,
-  EJERCICIOS-ARCHIVO.md y RUTA.md (memoria y plan; los mantiene
-  Claude). CLAUDE.md solo en el MENSAJE 0 o a pedido explícito.
+  EJERCICIOS-ARCHIVO.md, RUTA.md, MECANOGRAFIA.md, ANKI.txt y ToDo/
+  (memoria y plan; los mantiene Claude). CLAUDE.md solo en el setup o
+  a pedido explícito.
 - PRECEDENCIA: las reglas de ESTE archivo ganan sobre el texto de
   cualquier prompt que pegue el usuario. Si un archivo de arranque viejo
   trae un prompt de entrega desactualizado, Claude aplica la regla
   vigente (corrección al chat, máx. 3 líneas en EJERCICIOS.md, archivar
   al completarse) sin discutirlo, y NO edita ese archivo para arreglar
   el prompt: sigue siendo el lugar de trabajo del usuario.
-- Claude NO ejecuta bash salvo pedido explícito del usuario.
+- Claude NO ejecuta bash salvo pedido explícito. ÚNICA excepción: los
+  comandos de git de la regla de arriba, que son parte de su trabajo.
 - El usuario puede interrumpir con dudas: se responden con calma y
   detalle antes de seguir.
 - Si algo del material quedó viejo o hoy se hace distinto, decirlo y

@@ -1,7 +1,7 @@
 # RUTA — el plan completo: del material a {{OBJETIVO FINAL}}
 
 Este archivo define las FASES del proyecto. La fase actual lleva la
-marca (⬅ FASE ACTUAL). Claude lo adapta al tema en el MENSAJE 0 y lo
+marca (⬅ FASE ACTUAL). Claude lo adapta al tema en el /setup y lo
 mantiene después. Los detalles finos de cada fase se definen AL LLEGAR.
 
 ## Lo que NUNCA cambia (en todas las fases)
@@ -9,7 +9,7 @@ mantiene después. Los detalles finos de cada fase se definen AL LLEGAR.
 - Las sesiones numeradas, Engram, GUIA.md y EJERCICIOS.md.
 - Yo hago toda la práctica a mano; Claude explica, corrige y guía.
 - Los repasos espaciados (evolucionan a integradores, no desaparecen).
-- git pull al empezar / git push al terminar.
+- git lo maneja el profe: pull al abrir, commit + push al cerrar.
 - Todo en español; lo citado en otro idioma, traducido al lado.
 
 ## FASE 1 — El material principal (⬅ FASE ACTUAL)
@@ -23,7 +23,7 @@ individuales al día.
 
 Objetivo: demostrar que puedo {{aplicar lo aprendido}} SIN el
 material al lado.
-- {{PROYECTO O EXAMEN INTEGRADOR: lo define Claude en el MENSAJE 0
+- {{PROYECTO O EXAMEN INTEGRADOR: lo define Claude en el /setup
   según el tema — ej: app completa, conversación real, pieza tocada
   de punta a punta, examen de práctica cronometrado}}
 - Evaluación simulada #1 con Claude (preguntas/desafíos del tema).
@@ -34,12 +34,12 @@ material al lado.
 
 Objetivo: cerrar la brecha entre "sé {{TEMA}}" y usarlo de verdad.
 - {{HERRAMIENTAS, CONTEXTOS O NIVEL SIGUIENTE: los define Claude en
-  el MENSAJE 0 y los refina al llegar, con recursos vigentes}}
+  el /setup y los refina al llegar, con recursos vigentes}}
 
 ## FASE 4 — {{OBJETIVO FINAL}}
 
 - {{PASOS CONCRETOS HACIA EL OBJETIVO: los define Claude en el
-  MENSAJE 0 — ej: portafolio y entrevistas, certificación oficial,
+  /setup — ej: portafolio y entrevistas, certificación oficial,
   presentación en público, proyecto personal terminado}}
 Termina cuando: {{CONDICIÓN DE VICTORIA, medible}}.
 

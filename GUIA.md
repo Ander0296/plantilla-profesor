@@ -8,16 +8,16 @@ Prácticas: ver EJERCICIOS.md.
 
 ## INICIO RÁPIDO
 
-- Último punto estudiado: ninguno todavía — arrancamos en la sesión #01
-- Última sesión: ninguna todavía
-- Última sesión de Claude: ninguna todavía — la primera es
-  {{PREFIJO}}-s01. OJO: este contador NO es el mismo que "Sesión #NN"
-  (ese cuenta tandas del material; este cuenta sesiones de Claude, y
-  una sesión puede cubrir 2-3 tandas). El /rename sale de ACÁ.
+- Último punto estudiado: ninguno todavía — arrancamos en la Sesión #01
+- Última tanda: ninguna todavía (las tandas se numeran "Sesión #NN")
+- PRÓXIMA SESIÓN: `/rename {{PREFIJO}}-s01`
+  (el nombre de la sesión de Claude sale SIEMPRE de esta línea, no se
+  calcula: es un contador distinto al de las tandas, porque una sesión
+  de Claude puede cubrir 2-3 tandas. Claude la actualiza al cerrar.)
 - Prácticas pendientes: ninguna todavía — esta línea lista SOLO lo
   pendiente (nombres, sin historial); estados completos, fechas y
   repasos viven en EJERCICIOS.md (fuente de verdad)
-- Entorno verificado: (lo completa Claude en el MENSAJE 0)
+- Entorno verificado: (lo completa Claude en el `/setup`)
 
 ## VOCABULARIO (solo si el material está en otro idioma; una fila por término nuevo)
 

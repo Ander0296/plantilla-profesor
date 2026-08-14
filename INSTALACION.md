@@ -37,7 +37,7 @@ El uso diario está en README.md.
 3. Claude Code y Engram: instalalos como ya los tenés en tu PC
    principal; verificá con `claude --version` y `engram --version`.
 4. Las herramientas del TEMA (compilador, intérprete, etc.) se
-   definen en el MENSAJE 0 con el profe; no hacen falta todavía.
+   definen en el /setup con el profe; no hacen falta todavía.
 
 # ============================================================
 # PARTE 2 — LLAVE SSH DESDE CERO (una vez por PC)
@@ -71,10 +71,13 @@ ahí; el paso 4 debe responder igual "Hi TU-USUARIO!".
    cd ~/Proyectos
    git clone git@github.com:TU-USUARIO/plantilla-profesor.git
    (avisa "cloned an empty repository": normal, está vacío)
-4. Copiá adentro los 7 archivos de la plantilla (README.md,
-   INSTALACION.md, CLAUDE.md, RUTA.md, GUIA.md, EJERCICIOS.md,
-   .gitignore). Verificá con `ls -a` que .gitignore esté (es oculto:
-   empieza con punto).
+4. Copiá adentro TODO el contenido de la plantilla: los archivos
+   (README.md, INSTALACION.md, CLAUDE.md, RUTA.md, GUIA.md,
+   EJERCICIOS.md, .gitignore) y las carpetas ocultas o especiales
+   (.claude/commands/ con los comandos del profe, ToDo/). Verificá con
+   `ls -a` que .gitignore y .claude estén (son ocultos: empiezan con
+   punto). Sin .claude/commands/ no existen /arranque, /tanda ni el
+   resto: el sistema entero cuelga de ahí.
 5. Subilos:
    git add .
    git commit -m "plantilla base"
@@ -99,7 +102,7 @@ ahí; el paso 4 debe responder igual "Hi TU-USUARIO!".
    git clone git@github.com:TU-USUARIO/NOMBRE-DEL-TEMA.git
    cd NOMBRE-DEL-TEMA
    mkdir -p material/visto ejercicios/repasos
-4. Seguí el README.md desde "PRIMERA VEZ CON ESTE TEMA" (MENSAJE 0).
+4. Abrí `claude` en la carpeta y corré `/setup` con tus datos (ver README.md).
 
 # ============================================================
 # PARTE 5 — ENLAZAR UN SEGUNDO PC (o tercero...)
@@ -112,12 +115,14 @@ ahí; el paso 4 debe responder igual "Hi TU-USUARIO!".
    cd NOMBRE-DEL-TEMA
    mkdir -p material/visto
    (material/ llega vacía A PROPÓSITO: las imágenes no viajan por git)
-3. LA REGLA DE ORO CON VARIOS PCs — grabátela:
-   - Al EMPEZAR el día: git pull   (bajá lo del otro PC ANTES de tocar)
-   - Al TERMINAR el día: git add . && git commit -m "sesión X" && git push
-   ¿Por qué? Si tocás archivos en dos PCs sin sincronizar, git no sabe
-   cuál versión vale y se arma un "conflicto". Pull al empezar + push
-   al terminar = cero conflictos, siempre.
+3. LA REGLA DE ORO CON VARIOS PCs — la ejecuta el PROFE, no vos:
+   - Al EMPEZAR: `/arranque` hace `git pull` antes de leer nada.
+   - Al TERMINAR: `/cierre` (o `/cambio`) te muestra qué cambió, te
+     pide el OK y hace `git add` + `git commit` + `git push`.
+   ¿Por qué importa? Si tocás archivos en dos PCs sin sincronizar, git
+   no sabe cuál versión vale y se arma un "conflicto". Pull al empezar
+   + push al terminar = cero conflictos, siempre. Por eso nunca hay
+   que saltearse el `/cierre`.
 4. La memoria de Engram es LOCAL de cada PC y puede estar desparejada.
    No importa: GUIA.md y EJERCICIOS.md viajan por git y son la fuente
    de verdad — el profe los lee siempre al arrancar.
