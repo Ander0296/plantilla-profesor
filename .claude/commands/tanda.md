@@ -36,6 +36,12 @@ Cuando termines de explicar, en el mismo turno:
 - revisá si hace falta crear o actualizar un checklist de `ToDo/`;
 - guardá en Engram el punto exacto del material donde quedamos.
 
-Cerrá con el bloque `▶ SIGUE`. Si la tanda fue de IMÁGENES, el
-próximo paso es cambiar de sesión (`/cambio`): decilo y explicá por
-qué en una línea.
+Cerrá con el bloque `▶ SIGUE` y **decidí vos si seguimos acá o
+cortamos**, aplicando la regla "Cuándo cortar la sesión lo decide
+Claude" de CLAUDE.md. Nunca me preguntes "¿seguimos?" a secas: decime
+qué conviene y POR QUÉ en una línea (otra tanda acá, `/cambio` a sesión
+limpia, o cerrar el día con `/cierre`). Yo puedo pedirte lo contrario,
+pero la recomendación la ponés vos.
+
+Si además se cumple alguno de los disparadores de `/examen` (regla
+"Cuándo proponer /examen"), sumalo ahí en UNA línea.

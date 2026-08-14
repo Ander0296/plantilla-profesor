@@ -15,9 +15,13 @@ Recordá:
    EJERCICIOS.md entero.
 3. Reporte en MENOS DE 10 líneas: dónde quedamos, prácticas
    pendientes, repasos vencidos y qué toca hoy con su porqué.
-4. Si la línea "Último triage" del INICIO RÁPIDO tiene más de 7 días
-   (o dice "nunca"), avisámelo en UNA línea sugiriendo `/pendientes`.
-   Una sola línea, sin insistir.
+4. Dos avisos automáticos, UNA línea cada uno, sin insistir:
+   - si "Último triage" tiene más de 7 días (o dice "nunca") →
+     sugerime `/pendientes`;
+   - si se cumple algún disparador de `/examen` (regla "Cuándo proponer
+     /examen" de CLAUDE.md: 3 conceptos dominados nuevos, unidad
+     cerrada, práctica graduada, ~2 semanas sin examen) → sugerímelo,
+     diciendo de qué conceptos sería.
 5. Cerrás con el bloque `▶ SIGUE`, que empieza con el `/rename` de
    ESTA sesión copiado tal cual de la línea **PRÓXIMA SESIÓN** del
    INICIO RÁPIDO. Si esa línea no está, PREGUNTAME: no la deduzcas.

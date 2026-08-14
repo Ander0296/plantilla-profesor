@@ -25,4 +25,7 @@ Cerramos el día:
    confirmame en una línea que subió (o pegame el error tal cual).
 6. Dame el resumen del día en 5 líneas.
 
-Cerrá con el bloque `▶ SIGUE` para la próxima vez que abra Claude.
+Cerrá con el bloque `▶ SIGUE` para la próxima vez que abra Claude. Si se
+cumple algún disparador de `/examen`, dejalo propuesto AHÍ (para arrancar la
+próxima sesión), nunca para ahora: al final de una sesión cargada el que
+rinde mal es el contexto, no yo.

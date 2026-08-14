@@ -26,4 +26,8 @@ siguiente del ciclo; si salió mal, acortá el intervalo a ~3 días; mal
 DOS veces seguidas = RE-ESTUDIO. Si el r3 salió bien, graduá la
 práctica y pasá sus conceptos a CONCEPTOS DOMINADOS.
 
+Si el r3 salió bien y el concepto se graduó, proponeme `/examen`: la
+graduación dice que la práctica salió, el examen dice si el concepto se
+sostiene FUERA de esa práctica.
+
 Cerrá con el bloque `▶ SIGUE`.

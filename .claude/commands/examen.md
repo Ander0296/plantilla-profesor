@@ -37,6 +37,10 @@ Y por cada "flojo" o "no está":
 - si el fallo fue mecánico (algo que se verifica mirando el trabajo), creá o
   actualizá el checklist de `ToDo/` que corresponda.
 
-No escribas el examen en ningún archivo: esto vive en el chat.
+Actualizá también la línea **Último examen** del INICIO RÁPIDO de `GUIA.md`
+con la fecha de hoy: de ahí sale el aviso automático para el próximo.
+
+No escribas las preguntas ni mis respuestas en ningún archivo: el examen vive
+en el chat. A los archivos solo va la consecuencia (repasos y checklists).
 
 Cerrá con el bloque `▶ SIGUE`.

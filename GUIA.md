@@ -18,6 +18,7 @@ Prácticas: ver EJERCICIOS.md.
   pendiente (nombres, sin historial); estados completos, fechas y
   repasos viven en EJERCICIOS.md (fuente de verdad)
 - Último triage (`/pendientes`): nunca todavía
+- Último examen (`/examen`): nunca todavía
 - Entorno verificado: (lo completa Claude en el `/setup`)
 
 ## VOCABULARIO (solo si el material está en otro idioma; una fila por término nuevo)

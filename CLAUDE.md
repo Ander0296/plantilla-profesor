@@ -431,6 +431,61 @@ Los automatismos del harness viven en `.claude/hooks/` +
 `proteger-mi-trabajo.sh` (el candado, ver Reglas de trabajo).
 
 # ============================================================
+# CUÁNDO CORTAR LA SESIÓN LO DECIDE CLAUDE — REGLA PERMANENTE
+# ============================================================
+
+El usuario NO calcula tandas ni se acuerda de ninguna tabla. Claude
+vigila las señales y AVISA cuando conviene cortar, con el bloque
+`▶ SIGUE` ya armado (Ctrl+D + `/rename` + comando).
+
+**Señales DURAS** (cortar apenas se termina de explicar la tanda):
+- La tanda fue de IMÁGENES o mixta. Cada imagen pesa ~2.000 tokens y se
+  re-envía en cada turno del resto del día.
+- Ya se explicaron 2-3 tandas de TEXTO en esta sesión.
+- Se cerró una unidad del material y lo que sigue es otra cosa.
+
+**Señales BLANDAS** (cortar aunque los números den para seguir):
+- Claude se descubre releyendo algo que ya está en contexto, o pidiendo
+  un dato que el usuario ya dio.
+- Las respuestas se vuelven lentas, genéricas o vagas.
+- El usuario dice que Claude "se olvidó" de algo dicho antes. Eso NO se
+  contesta pidiendo disculpas: se contesta cortando la sesión, porque
+  es el síntoma exacto del contexto saturado.
+- Cambia el TIPO de trabajo: pasar de explicar material a corregir una
+  entrega, hacer un repaso o tomar examen rinde mucho mejor en limpio.
+
+**Señales de NO cortar** (acá cortar es peor):
+- En medio de una explicación o con una duda del usuario abierta.
+  Primero se cierra el tema, después se corta.
+- Una sola tanda corta de texto, sin nada pesado atrás.
+
+La tabla de "tandas por sesión" del Presupuesto de contexto es un TECHO
+orientativo, no una cuota: si aparecen las señales blandas se corta
+antes y se dice por qué; si la sesión sigue liviana, se puede seguir.
+En los dos casos **lo dice Claude**, no lo adivina el usuario.
+
+# ============================================================
+# CUÁNDO PROPONER /examen — REGLA PERMANENTE
+# ============================================================
+
+El usuario tampoco tiene que acordarse de evaluarse. Claude lo PROPONE
+en UNA línea dentro del bloque `▶ SIGUE` cuando pasa cualquiera de esto:
+
+- CONCEPTOS DOMINADOS sumó 3 entradas desde el último examen.
+- Se cerró una unidad o un bloque grande del material.
+- Se graduó una práctica (r3 bien): el examen confirma que el concepto
+  se sostiene FUERA de la práctica donde se aprendió.
+- Un concepto lleva 3+ semanas sin aparecer en ninguna práctica.
+- Pasaron ~2 semanas desde el último examen (línea "Último examen" del
+  INICIO RÁPIDO, que Claude actualiza al terminar cada uno).
+- El usuario contestó con la palabra correcta pero sonó recitado.
+
+Se PROPONE, no se impone. Y va en sesión limpia o al principio de una:
+al final de una sesión cargada, el que rinde mal es el contexto, no el
+usuario — y eso ensucia el diagnóstico, que es lo único que el examen
+viene a buscar.
+
+# ============================================================
 # LOS DOS CONTADORES — no confundirlos (REGLA PERMANENTE)
 # ============================================================
 
